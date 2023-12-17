@@ -3,6 +3,9 @@ import './styles/style.css';
 
 import { initEventHandlersWithAsyncAwait } from './logic/eventHandlers';
 
+const iconsContext = require.context('./assets/weather-icons', true, /^.png$/);
+iconsContext.keys().forEach(iconsContext);
+
 const updateClock = (clock) => {
   clock.textContent = new Date().toLocaleTimeString([], { timeStyle: 'short' });
 };
