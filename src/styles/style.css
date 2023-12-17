@@ -505,6 +505,9 @@ section.forecast {
 .loader-dialog {
   background-color: transparent;
   border: none;
+  resize: none;
+  height: 500px;
+  width: 500px;
 }
 .loader {
   width: 250px;

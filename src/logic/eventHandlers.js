@@ -78,7 +78,7 @@ const matchSwitchesToSettings = (switches, userSettings) => {
   });
 };
 
-const initSaveLocationBtn = (btn, userSettings) => {
+const initSaveLocationBtn = (btn) => {
   btn.addEventListener('click', (e) => {
     const currentLocation = document.querySelector('div.location').textContent;
     const icon = btn.querySelector('.save-this-location-icon');

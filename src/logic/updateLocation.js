@@ -31,6 +31,8 @@ const updateLocationByGeoAsync = () => {
         const forecastWeatherResponse = await fetchWeatherAsyncAwait('bald knob', 'forecast');
         updateCurrentWeatherDisplay(currentWeatherResponse, userSettings);
         updateForecastWeatherDisplay(forecastWeatherResponse, userSettings);
+        userStorage.storeCurrentWeather(currentWeatherResponse);
+        userStorage.storeForecastWeather(forecastWeatherResponse);
       } catch (error) {
         console.error(error);
       }
