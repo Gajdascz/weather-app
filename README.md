@@ -2,7 +2,7 @@
 
 OdinEye Weather is a dynamic web application that provides users with real-time weather updates and forecasts. This project was created as part of my journey through The Odin Project, providing me with invaluable hands-on experience and deepening my understanding of asynchronous programming and web API integration.
 
-- **Live Preview**: https://gajdascz.github.io/odineye-weather/
+- **Live Preview**: https://gajdascz.github.io/weather-app/
 - **Project Page**: [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-weather-app)
 
 ## Features
