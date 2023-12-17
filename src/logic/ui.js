@@ -26,18 +26,22 @@ function updateCurrentWeatherDisplay(data, settings = {}) {
   };
 
   const updatePrimary = async () => {
+    const imgElement = sec.querySelector('.current-weather-gif');
+    const queryDiv = sec.querySelector('.gif-query');
     const icon = sec.querySelector('.current-weather-icon');
     icon.src = getIcon(data.current.condition.icon);
     let query;
     if (settings.gifs === 'on' || settings.bg === 'on') query = checkWeatherCondition(data);
     if (settings.gifs === 'on') {
-      const imgElement = sec.querySelector('.current-weather-gif');
       imgElement.classList.remove('hidden');
       imgElement.src = await getGif(query);
+      queryDiv.classList.remove('hidden');
+      queryDiv.querySelector('.search-query').textContent = ` ${query}`;
     } else {
-      const gifEle = sec.querySelector('.current-weather-gif');
-      gifEle.classList.add('hidden');
-      gifEle.src = '';
+      imgElement.classList.add('hidden');
+      imgElement.src = '';
+      queryDiv.classList.add('hidden');
+      queryDiv.querySelector('.search-query').textContent = '';
     }
     if (settings.bg === 'on') setBG(query);
     else setBG('off');
@@ -55,6 +59,7 @@ function updateCurrentWeatherDisplay(data, settings = {}) {
 
   const updateOther = () => {
     setText('.current-uv', current.uv);
+    setText('.current-humidity', current.humidity + '%');
     setText('.current-visibility', getValue('vis', 'distance'));
     setText('.current-pressure', getValue('pressure', 'pressure'));
     setText('.current-precip-amount', getValue('precip', 'precip'));
@@ -137,8 +142,8 @@ function updateForecastWeatherDisplay(responseData, settings) {
       temp: apiDay[`avgtemp_${settings.temp}`] + `°${settings.temp.toUpperCase()}`,
       precip: apiDay[`totalprecip_${settings.precip}`] + `${settings.precip}`,
       humidity: apiDay.avghumidity + '%',
-      vis: apiDay[`avgvis_${settings.distance}`],
-      wind: apiDay[`maxwind_${settings.speed}`],
+      vis: apiDay[`avgvis_${settings.distance}`] + `${settings.distance}`,
+      wind: apiDay[`maxwind_${settings.speed}`] + `${settings.speed}`,
       uv: apiDay.uv
     });
 

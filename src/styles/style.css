@@ -331,7 +331,7 @@ section.current-weather {
   display: grid;
   grid-template-rows: min-content 1fr;
   grid-template-columns: min-content min-content 1fr;
-  justify-items: baseline;
+  justify-items: center;
   align-items: center;
   background-color: var(--soft-white-blue);
 }
@@ -341,6 +341,7 @@ section.current-weather {
   grid-column: 1/-1;
   display: flex;
   gap: 0.5em;
+  justify-self: baseline;
 }
 .save-this-location-button {
   padding: 0;
@@ -427,6 +428,12 @@ section.current-weather {
 .current-weather-gif {
   width: 75%;
   max-height: 75%;
+}
+.gif-query {
+  font-style: italic;
+}
+.search-query {
+  font-weight: bold;
 }
 section.forecast {
   grid-row: 2;

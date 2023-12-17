@@ -33,8 +33,15 @@ function initEventHandlersWithAsyncAwait() {
 }
 
 const initGeoBtnAsync = (btn) => btn.addEventListener('click', (e) => updateLocationByGeoAsync());
-const initSearchBtnAsync = (btn, inputField) =>
+const initSearchBtnAsync = (btn, inputField) => {
   btn.addEventListener('click', (e) => updateLocationByInputAsync(inputField.value));
+  inputField.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      updateLocationByInputAsync(inputField.value);
+      e.preventDefault();
+    }
+  });
+};
 
 const initSettings = () => userStorage.getSettingsDataObj() ?? settings();
 
