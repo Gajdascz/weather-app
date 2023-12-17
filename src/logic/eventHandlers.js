@@ -26,9 +26,9 @@ function initEventHandlersWithAsyncAwait() {
   }
   initSearchBtnAsync(searchBarBtn, searchBar);
 
-  initOptionSwitches(optionSwitches, userStorage.getSettingsDataObj());
+  initOptionSwitches(optionSwitches);
 
-  initSaveLocationBtn(saveThisLocationBtn, userStorage.getSettingsDataObj());
+  initSaveLocationBtn(saveThisLocationBtn);
 
   initSavedLocations();
 }
@@ -46,11 +46,12 @@ const initSearchBtnAsync = (btn, inputField) => {
 
 const initSettings = () => userStorage.isSavedSettings() || userStorage.storeSettings(settings());
 
-const initOptionSwitches = (switches, userSettings) => {
-  matchSwitchesToSettings(switches, userSettings);
+const initOptionSwitches = (switches) => {
+  matchSwitchesToSettings(switches, userStorage.getSettingsDataObj());
   switches.forEach((optionSwitch) => {
     const slider = optionSwitch.querySelector('.switch-slider');
     slider.addEventListener('click', (e) => {
+      const userSettings = userStorage.getSettingsDataObj();
       const options = optionSwitch.querySelector('.switch-options');
       [...options.children].forEach((option) => {
         option.classList.toggle('switch-active-option');
@@ -59,7 +60,11 @@ const initOptionSwitches = (switches, userSettings) => {
         }
       });
       userStorage.storeSettings(userSettings);
-      refreshDisplay(userStorage.getCurrentWeatherDataObj(), userStorage.getForecastWeatherDataObj(), userSettings);
+      refreshDisplay(
+        userStorage.getCurrentWeatherDataObj(),
+        userStorage.getForecastWeatherDataObj(),
+        userStorage.getSettingsDataObj()
+      );
     });
   });
 };
