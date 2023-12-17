@@ -156,7 +156,7 @@ const getIcon = (apiPath) => {
   const apiIconPath = apiPath;
   const sliceAfter = '64x64/';
   const sliceIndex = apiIconPath.indexOf(sliceAfter) + sliceAfter.length;
-  return '../assets/weather-icons/' + `${apiIconPath.slice(sliceIndex)}`;
+  return 'assets/weather-icons/' + `${apiIconPath.slice(sliceIndex)}`;
 };
 
 const getDayName = (dayNumber) => {
