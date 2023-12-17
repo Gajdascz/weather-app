@@ -506,6 +506,7 @@ section.forecast {
   background-color: transparent;
   border: none;
   resize: none;
+  outline: none;
   height: 500px;
   width: 500px;
 }
