@@ -7,7 +7,7 @@ module.exports = merge(common, {
   devtool: 'source-map',
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: '../src/assets/weather-icons', to: '../dist/assets/weather-icons' }]
+      patterns: [{ from: 'src/assets/weather-icons/', to: 'dist/assets/weather-icons/' }]
     })
   ]
 });
