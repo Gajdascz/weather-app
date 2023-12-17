@@ -14,7 +14,8 @@ function initEventHandlersWithAsyncAwait() {
   const searchBar = sidebar.querySelector('input.search-input');
   const optionSwitches = sidebar.querySelectorAll('.switch');
   const saveThisLocationBtn = document.querySelector('button.save-this-location-button');
-  const userSettings = initSettings();
+
+  initSettings();
 
   if (navigator.geolocation) {
     updateLocationByGeoAsync();
@@ -25,11 +26,11 @@ function initEventHandlersWithAsyncAwait() {
   }
   initSearchBtnAsync(searchBarBtn, searchBar);
 
-  initOptionSwitches(optionSwitches, userSettings);
+  initOptionSwitches(optionSwitches, userStorage.getSettingsDataObj());
 
-  initSaveLocationBtn(saveThisLocationBtn, userSettings);
+  initSaveLocationBtn(saveThisLocationBtn, userStorage.getSettingsDataObj());
 
-  initSavedLocations(userSettings);
+  initSavedLocations();
 }
 
 const initGeoBtnAsync = (btn) => btn.addEventListener('click', (e) => updateLocationByGeoAsync());
@@ -43,7 +44,7 @@ const initSearchBtnAsync = (btn, inputField) => {
   });
 };
 
-const initSettings = () => userStorage.getSettingsDataObj() ?? settings();
+const initSettings = () => userStorage.isSavedSettings() || userStorage.storeSettings(settings());
 
 const initOptionSwitches = (switches, userSettings) => {
   matchSwitchesToSettings(switches, userSettings);

@@ -10,6 +10,9 @@ const userStorage = (() => {
 
   const serializeData = (dataObj) => JSON.stringify(dataObj);
   const deserializeData = (serializedData) => JSON.parse(serializedData);
+
+  const isSavedSettings = () => !!localStorage.getItem('settings');
+
   return {
     storeSettings,
     storeCurrentWeather,
@@ -17,6 +20,7 @@ const userStorage = (() => {
     getSettingsDataObj,
     getCurrentWeatherDataObj,
     getForecastWeatherDataObj,
+    isSavedSettings,
     get length() {
       return localStorage.length;
     }
