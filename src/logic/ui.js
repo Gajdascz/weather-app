@@ -6,11 +6,12 @@ function updateCurrentWeatherDisplay(data, settings = {}) {
   const current = data.current;
   const sec = document.querySelector('section.current-weather');
   const savedIcon = sec.querySelector('.save-this-location-icon');
-
-  const locationString =
-    data.location.name === data.location.region
-      ? `${data.location.name}, ${data.location.country}`
-      : `${data.location.name}, ${data.location.region}`;
+  let locationString;
+  if (data.location.region !== '' && data.location.region !== data.location.name) {
+    locationString = `${data.location.name}, ${data.location.region}`;
+  } else {
+    locationString = `${data.location.name}, ${data.location.country}`;
+  }
 
   const isLocationSaved = () => settings.savedLocations.some((location) => location === locationString);
 
